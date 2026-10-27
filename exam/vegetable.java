@@ -14,7 +14,7 @@ public class vegetable extends farmproduce {
         return 0.10;
     }
     double paybleamount(double quantity){
-        return pricePerKg*quantity*0.90;
+        return pricePer()*quantity*0.90;
     }
     public void displayDetails(){
         System.out.println("Season: "+season);

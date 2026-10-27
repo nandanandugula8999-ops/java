@@ -14,7 +14,7 @@ public class grain extends farmproduce {
         return 0.05;
     }
     double paybleamount(double quantity){
-        return pricePerKg*quantity*0.95;
+        return pricePer()*quantity*0.95;
     }
     public void displayDetails(){
         System.out.println("Grain-Type :"+grainType);
