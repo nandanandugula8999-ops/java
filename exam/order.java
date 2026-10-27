@@ -152,65 +152,104 @@ static void Placeorder(farmproduce[] items, int id, double quantity) {
         }
 
     }
-    public static void main(String[] args){
-        farmproduce [] items= {
-            new grain(701,"Organic rice",60,100,"Ramesh","Rice",true),
-            new vegetable(702,"Fresh tomatoes",40,80,"Me daddy","Summer",false),
-            new fruit(703,"Alphonso Mangoes",120,50,"Anand","Alphonso",'A'),
-            new spice(704, "Turmeric powder", 200, 30, "pablo","Turmeric","Hyd")
-        };  
-    /*
-         AddtoCart(items[0], 10);
-        AddtoCart(items[0], 5);
-        Displayinventory(items);
-        Displayvalue(items);
-        searchproducebyId(items, 702);
-        searchbyName(items, "Mangoes");
-        compareObject(items[0], items[1]);
-        Displaycart();
-        Placeorder(items, 101, 6);
-        System.out.println("Payable amount: ₹"+ items[0].payableamount(15));
-        Payableamounts(items);*/
-        
-        Placeorder(items, 701, 10);
-        Placeorder(items, 702, 5);
-        Placeorder(items, 703, 3);
-        Placeorder(items, 704, 2);
-        Placeorder(items, 701, 5);
-        System.out.println("###############################");
-        Placeorder(items, 701, 90);  // Insufficient stock: only 85 kg left
-        Placeorder(items, 701, 0);   // Zero quantity
-        Placeorder(items, 701, -5);  // Negative quantity
-        Placeorder(items, 701, 100); // More than available stock
-        Displaycart();
-       searchproducebyId(items, 999);
-        searchbyName(items, "Unknown Produce");
-        System.out.println("\nProduce Details and Polymorphism");
+    
+public static void main(String[] args) {
 
-    for (farmproduce p : items) {
-        p.DisplayDetails();
+    // 1. Create and initialize produce objects
+    farmproduce[] items = {
+        new grain(701, "Organic rice", 60, 100, "Ramesh", "Rice", true),
+        new vegetable(702, "Fresh tomatoes", 40, 80, "Me daddy", "Summer", false),
+        new fruit(703, "Alphonso Mangoes", 120, 50, "Anand", "Alphonso", 'A'),
+        new spice(704, "Turmeric powder", 200, 30, "pablo", "Turmeric", "Hyd")
+    };
+
+    // 2. Display all produce details
+    System.out.println("\n===== ALL PRODUCE DETAILS =====");
+    Displayinventory(items);
+
+    // 3. Display initial inventory statistics
+    System.out.println("\n===== INITIAL INVENTORY =====");
+    TotalTypes(items);
+    Totalstock(items);
+    Displayvalue(items);
+
+    // 4. Search by ID and name
+    System.out.println("\n===== SEARCH PRODUCE =====");
+    searchproducebyId(items, 701);
+    searchbyName(items, "Organic rice");
+
+    // 5. Compare produce objects by ID
+    System.out.println("\n===== COMPARE PRODUCE =====");
+    compareObject(items[0], items[1]);
+
+    // 6 and 7. Process orders and merge repeated rice orders
+    System.out.println("\n===== PLACE VALID ORDERS =====");
+    Placeorder(items, 701, 10);
+    Placeorder(items, 702, 5);
+    Placeorder(items, 703, 3);
+    Placeorder(items, 704, 2);
+    Placeorder(items, 701, 5);
+
+    // 8. Validate invalid orders
+    System.out.println("\n===== INVALID ORDER TESTS =====");
+    Placeorder(items, 701, 90);
+    Placeorder(items, 701, 0);
+    Placeorder(items, 701, -5);
+    Placeorder(items, 701, 100);
+
+    // Test searches for nonexistent produce
+    searchproducebyId(items, 999);
+    searchbyName(items, "Unknown Produce");
+
+    // 9. Demonstrate runtime polymorphism through Sellable
+    System.out.println("\n===== PAYABLE AMOUNTS =====");
+    Payableamounts(items);
+
+    // 10. Display cart and final bill
+    System.out.println("\n===== FINAL ORDER CART =====");
+    Displaycart();
+
+    // 11. Stock has already been updated in Placeorder()
+    System.out.println("\n===== UPDATED PRODUCE DETAILS =====");
+    Displayinventory(items);
+
+    // 12. Display updated stock statistics
+    System.out.println("\n===== UPDATED INVENTORY =====");
+    Totalstock(items);
+    Displayvalue(items);
+
+    // 13. Verify invalid orders did not change stock or cart
+    System.out.println("\n===== VALIDATION CHECK =====");
+    System.out.println("Organic Rice stock: " + items[0].availableKg() + " kg");
+    System.out.println("Cart entries: " + cart.size());
+
+    // 14. Demonstrate independent object copying
+    System.out.println("\n===== INDEPENDENT OBJECT COPYING =====");
+
+    farmproduce original = items[0];
+
+    farmproduce copy = new grain(
+        original.produceId(),
+        original.Name(),
+        original.pricePer(),
+        original.availableKg(),
+        original.fathername(),
+        "Rice",
+        true
+    );
+
+    System.out.println("Original rice stock: " + original.availableKg() + " kg");
+    System.out.println("Copied rice stock initially: " + copy.availableKg() + " kg");
+
+    copy.setavailKg(150);
+
+    System.out.println("Original rice stock after modification: "
+            + original.availableKg() + " kg");
+    System.out.println("Copied rice stock after modification: "
+            + copy.availableKg() + " kg");
+
+    // The copied object is not added to items or cart.
 }
-        Totalstock(items);
-        Displayvalue(items);
-        System.out.println("Proude objefct copying");
 
-        farmproduce original = items[0];
-        farmproduce copy = new grain(
-            original.produceId(),
-            original.Name(),
-            original.pricePer(),
-            original.availableKg(),
-            original.fathername(),
-            "Rice",true
-        );
-        System.out.println("Original rice");
-        original.DisplayDetails();
-        System.out.println("Copied rice");
-        copy.DisplayDetails();
-        copy.setavailKg(150);
-        System.out.println("Modified values");
-        System.out.println("Original rice value: "+original.availableKg()+"Kg");
-        System.out.println("Copied rice value: "+copy.availableKg()+"Kg");
-    }
     
 }
