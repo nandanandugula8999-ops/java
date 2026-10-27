@@ -22,6 +22,38 @@ public class order {
             System.out.println("The total inventory value is :"+total);
         }
     }
+
+    static void searchproducebyId(farmproduce[] items,int id){
+        for(farmproduce p : items){
+            if(p.produceID==id){
+                System.out.println("Produce is found.");
+                p.DisplayDetails();
+                return ;
+            
+            }
+        }
+        System.out.println("Produce not found");
+    }
+    static void searchbyName(farmproduce[] items,String name){
+        for(farmproduce p : items){
+            if(p.Name().equalsIgnoreCase(name)){
+                System.out.println("Name is found.");
+                p.DisplayDetails();
+                return;
+            }
+            }
+        
+            System.out.println("Name is not found");
+    }
+    static void compareObject(farmproduce p1,farmproduce p2){
+        if(p1.issameProduce(p2)){
+            System.out.println("The producce is same.");
+        }
+        else{
+            System.out.println("The produce is not same.");
+        }
+
+    }
     public static void main(String[] args){
         farmproduce [] items= {
             new farmproduce(701,"Organic rice",60,100,"Ramesh"),
@@ -35,6 +67,9 @@ public class order {
         };
         Displayinventory(items);
         Displayvalue(items);
+        searchproducebyId(items, 702);
+        searchbyName(items, "Mangoes");
+        compareObject(items[0], items[1]);
 
     }
 }

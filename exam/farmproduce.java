@@ -44,4 +44,7 @@ public class farmproduce {
     public double stockvalue(){
         return pricePerKg*availableKg;
     }
+    public boolean issameProduce(farmproduce p){
+        return this.produceID == produceID;
+    }
 }
