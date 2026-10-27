@@ -14,7 +14,8 @@ public class spice extends farmproduce {
     public double Discount(){
         return 0.12;
     }
-    double paybleAmount(double quantity){
+    @Override 
+    public double payableamount(double quantity){
         return pricePer()*quantity*0.88;
     }
     public void DisplayDetails(){

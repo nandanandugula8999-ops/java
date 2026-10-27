@@ -14,9 +14,11 @@ public class vegetable extends farmproduce {
     public double Discount(){
         return 0.10;
     }
-    double paybleamount(double quantity){
+    @Override 
+    public double payableamount(double quantity){
         return pricePer()*quantity*0.90;
     }
+
     public void DisplayDetails(){
         super.DisplayDetails();
         System.out.println("Season: "+season);

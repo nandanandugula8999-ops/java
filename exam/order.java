@@ -39,6 +39,7 @@ public class order {
             System.out.println("Produce: "+c.produce.Name());
             System.out.println("Quantity: "+c.quantity+"kg");
             System.out.println("Subtotal: "+c.subtotal());
+            System.out.println("Discount percentage :"+c.discountPercentage()+"%");
             System.out.println("Discount: "+c.discount());
             System.out.println("Final amount : "+c.finalamount());
             System.out.println("--------------------");
@@ -67,8 +68,9 @@ public class order {
                 p.setavailKg(p.availableKg-quantity); //update
                 System.out.println("Order confirmed");
                 }
+                 return;
             }
-            return;
+           
         }
         System.out.println("Produce not found");
     }
@@ -128,25 +130,20 @@ public class order {
     }
     public static void main(String[] args){
         farmproduce [] items= {
-            new farmproduce(701,"Organic rice",60,100,"Ramesh"),
-            new farmproduce(702,"Fresh tomatoes",40,80,"Me daddy"),
-            new farmproduce(703,"Alphonso Mangoes",120,50,"Anand"),
-            new farmproduce(704, "Turmeric powder", 200, 30, "pablo"),
             new fruit(701,"Organic rice",60,100,"Ramesh","alphonso",'A'),
             new spice(702,"Fresh tomatoes",40,80,"Me daddy","karam","hyd"),
             new grain(703,"Alphonso Mangoes",120,50,"Anand","classic",true),
             new vegetable(704, "Turmeric powder", 200, 30, "pablo","summer",false)
         };
-        AddtoCart(items[0], 2);
-        AddtoCart(items[1], 3);
-        AddtoCart(items[3], 2);
-
+        AddtoCart(items[0], 10);
+        AddtoCart(items[0], 5);
         Displayinventory(items);
         Displayvalue(items);
         searchproducebyId(items, 702);
         searchbyName(items, "Mangoes");
         compareObject(items[0], items[1]);
         Displaycart();
-        Placeorder(items, 701, 6);
+        Placeorder(items, 101, 6);
+        System.out.println("Payable amount: ₹"+ items[0].payableamount(15));
     }
 }

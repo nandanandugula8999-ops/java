@@ -1,6 +1,6 @@
 package exam;
 
-public class farmproduce {
+public class farmproduce implements sellable{
     int produceID;
     String produceName;
     double pricePerKg;
@@ -33,6 +33,10 @@ public class farmproduce {
     public double Discount(){
         return 0.0;
     }
+    @Override 
+    public double payableamount(double quantity){
+        return pricePerKg*quantity;
+    } 
     void DisplayDetails(){
         System.out.println("ProduceID : "+produceID);
         System.out.println("ProduceName :"+produceName);

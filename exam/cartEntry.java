@@ -14,6 +14,9 @@ public class cartEntry {
     public double subtotal(){
         return produce.pricePer()*quantity;
     }
+    public double discountPercentage(){
+        return produce.Discount()*100;
+    }
     public double discount(){
         return subtotal()*produce.Discount();
     }

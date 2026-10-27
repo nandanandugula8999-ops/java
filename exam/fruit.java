@@ -14,7 +14,8 @@ public class fruit extends farmproduce {
     public double Discount(){
         return 0.08;
     }
-    public double paybleAmount(double quantity){
+     @Override 
+    public double payableamount(double quantity){
         return pricePer() * quantity * 0.92;
     }
     @Override

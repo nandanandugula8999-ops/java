@@ -14,7 +14,8 @@ public class grain extends farmproduce {
     public double Discount(){
         return 0.05;
     }
-    double paybleamount(double quantity){
+    @Override 
+    public double payableamount(double quantity){
         return pricePer()*quantity*0.95;
     }
     public void DisplayDetails(){
