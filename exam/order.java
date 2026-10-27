@@ -34,6 +34,7 @@ public class order {
         for(cartEntry c : cart){
             System.out.println("Produce: "+c.produce.Name());
             System.out.println("Quantity: "+c.quantity+"kg");
+            System.out.println("Price per Kg: "+c.produce.pricePer());
             System.out.println("Subtotal: "+c.subtotal());
             System.out.println("Discount percentage :"+c.discountPercentage()+"%");
             System.out.println("Discount: "+c.discount());
@@ -59,26 +60,43 @@ public class order {
         System.out.println("_------------------");
         }
     }
-    static void Placeorder(farmproduce[] items,int id,double quantity){
-        for(farmproduce p :items){
-            if(p.produceId()==id){
-            if(quantity<=0){
-                    System.out.println("Invalid quantity");
-                }
-                else if(quantity>=p.availableKg()){
-                    System.out.println("Insufficicent quantity");
-                }
-                else{
-                AddtoCart(p, quantity);//add
-                p.setavailKg(p.availableKg-quantity); //update
-                System.out.println("Order confirmed");
-                }
-                 return;
+    
+static void Placeorder(farmproduce[] items, int id, double quantity) {
+
+    for (farmproduce p : items) {
+
+        if (p.produceId() == id) {
+
+            if (quantity <= 0) {
+                System.out.println("Invalid quantity");
             }
-           
+            else if (quantity > p.availableKg()) {
+                System.out.println("Insufficient quantity");
+            }
+            else {
+                for (cartEntry c : cart) {
+
+                    if (c.produce.issameProduce(p)) {
+                        c.increaseProduce(quantity);
+                        p.setavailKg(p.availableKg() - quantity);
+                        System.out.println("Order confirmed");
+                        
+                        return;
+                    }
+                }
+
+                cart.add(new cartEntry(p, quantity));
+                p.setavailKg(p.availableKg() - quantity);
+                System.out.println("Order confirmed");
+            }
+
+            return;
         }
-        System.out.println("Produce not found");
     }
+
+    System.out.println("Produce not found");
+}
+
     static void Displayinventory(farmproduce[] items){
         for(farmproduce p : items){
             p.DisplayDetails();
@@ -98,8 +116,9 @@ public class order {
         double total =0;
         for(farmproduce p : items){
             total+=p.stockvalue();
-            System.out.println("The total inventory value is :"+total);
+            
         }
+        System.out.println("The total inventory value is :"+total);
     }
 
     static void searchproducebyId(farmproduce[] items,int id){
@@ -163,5 +182,7 @@ public class order {
         for(farmproduce p:items){
             p.DisplayDetails();
         }
+        Totalstock(items);
+        Displayvalue(items);
     }
 }
