@@ -53,6 +53,25 @@ public class order {
         System.out.println("Total Discount: "+totalDiscount);
         System.out.println("Total Amount to be paid: "+totalbill);
     }
+    static void Placeorder(farmproduce[] items,int id,double quantity){
+        for(farmproduce p :items){
+            if(p.produceId()==id){
+                if(quantity<=0){
+                    System.out.println("Invalid quantity");
+                }
+                else if(quantity>=p.availableKg()){
+                    System.out.println("Insufficicent quantity");
+                }
+                else{
+                AddtoCart(p, quantity);//add
+                p.setavailKg(p.availableKg-quantity); //update
+                System.out.println("Order confirmed");
+                }
+            }
+            return;
+        }
+        System.out.println("Produce not found");
+    }
     static void Displayinventory(farmproduce[] items){
         for(farmproduce p : items){
             p.DisplayDetails();
@@ -128,5 +147,6 @@ public class order {
         searchbyName(items, "Mangoes");
         compareObject(items[0], items[1]);
         Displaycart();
+        Placeorder(items, 701, 6);
     }
 }
