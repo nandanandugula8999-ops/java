@@ -177,11 +177,15 @@ static void Placeorder(farmproduce[] items, int id, double quantity) {
         Placeorder(items, 703, 3);
         Placeorder(items, 704, 2);
         Placeorder(items, 701, 5);
-
+        System.out.println("###############################");
+        Placeorder(items, 701, 90);  // Insufficient stock: only 85 kg left
+        Placeorder(items, 701, 0);   // Zero quantity
+        Placeorder(items, 701, -5);  // Negative quantity
+        Placeorder(items, 701, 100); // More than available stock
         Displaycart();
-        for(farmproduce p:items){
-            p.DisplayDetails();
-        }
+       searchproducebyId(items, 999);
+searchbyName(items, "Unknown Produce");
+
         Totalstock(items);
         Displayvalue(items);
     }
