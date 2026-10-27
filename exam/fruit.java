@@ -10,8 +10,8 @@ public class fruit extends farmproduce {
             this.fruitvariety=fruitvariety;
             this.grade=grade;
         }
-     
-    double Discount(){
+    @Override 
+    public double Discount(){
         return 0.08;
     }
     public double paybleAmount(double quantity){

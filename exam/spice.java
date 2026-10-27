@@ -10,8 +10,8 @@ public class spice extends farmproduce {
             this.spiceType=spiceType;
             this.origin=origin;
         }
-
-    double Discount(){
+        @Override 
+    public double Discount(){
         return 0.12;
     }
     double paybleAmount(double quantity){

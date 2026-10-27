@@ -10,7 +10,8 @@ public class vegetable extends farmproduce {
             this.season=season;
             this.perishable=perishable;
         }
-    double Discount(){
+    @Override     
+    public double Discount(){
         return 0.10;
     }
     double paybleamount(double quantity){

@@ -30,6 +30,9 @@ public class farmproduce {
     public String fathername(){
         return farmerName;
     }
+    public double Discount(){
+        return 0.0;
+    }
     void DisplayDetails(){
         System.out.println("ProduceID : "+produceID);
         System.out.println("ProduceName :"+produceName);

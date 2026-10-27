@@ -1,5 +1,58 @@
 package exam;
+
+import java.util.ArrayList;
+
 public class order {
+    static ArrayList<cartEntry> cart = new ArrayList<>();
+
+    static void AddtoCart(farmproduce p,double quantity){
+        if(quantity<=0){
+            System.out.println("Invalid quantity");
+            return;
+        }
+        if(quantity>p.availableKg()){
+            System.out.println("Insufficient quantity");
+            return;
+        }
+    
+    for(cartEntry c:cart){
+        if(c.produce.issameProduce(p)){
+            if(c.quantity + quantity >p.availableKg){
+                System.out.println("Insufficient quantity");
+                return ;
+            }
+        c.increaseProduce(quantity);
+        System.out.println("quantity increased");
+        return;
+        }
+    }
+    cart.add(new cartEntry(p,quantity));
+    System.out.println("Produce added to the cart");
+}
+    static void Displaycart(){
+        double totalQuantity=0;
+        double totalsubTotal=0;
+        double totalDiscount=0;
+        double totalbill=0;
+        System.out.println("\n customer order cart");
+        for(cartEntry c : cart){
+            System.out.println("Produce: "+c.produce.Name());
+            System.out.println("Quantity: "+c.quantity+"kg");
+            System.out.println("Subtotal: "+c.subtotal());
+            System.out.println("Discount: "+c.discount());
+            System.out.println("Final amount : "+c.finalamount());
+            System.out.println("--------------------");
+
+            totalQuantity+=c.quantity;
+            totalsubTotal+=c.subtotal();
+            totalDiscount+=c.discount();
+            totalbill+=c.finalamount();
+        }
+        System.out.println("Total quantity: "+totalQuantity);
+        System.out.println("Total subtotal: "+totalsubTotal);
+        System.out.println("Total Discount: "+totalDiscount);
+        System.out.println("Total Amount to be paid: "+totalbill);
+    }
     static void Displayinventory(farmproduce[] items){
         for(farmproduce p : items){
             p.DisplayDetails();
@@ -65,11 +118,15 @@ public class order {
             new grain(703,"Alphonso Mangoes",120,50,"Anand","classic",true),
             new vegetable(704, "Turmeric powder", 200, 30, "pablo","summer",false)
         };
+        AddtoCart(items[0], 2);
+        AddtoCart(items[1], 3);
+        AddtoCart(items[3], 2);
+
         Displayinventory(items);
         Displayvalue(items);
         searchproducebyId(items, 702);
         searchbyName(items, "Mangoes");
         compareObject(items[0], items[1]);
-
+        Displaycart();
     }
 }

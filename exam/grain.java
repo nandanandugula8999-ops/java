@@ -10,7 +10,8 @@ public class grain extends farmproduce {
             grainType=type;
             this.organic=organic;
         }
-    double Discount(){
+    @Override 
+    public double Discount(){
         return 0.05;
     }
     double paybleamount(double quantity){
