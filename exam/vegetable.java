@@ -11,10 +11,10 @@ public class vegetable extends farmproduce {
             this.perishable=perishable;
         }
     double Discount(){
-        return 0.1;
+        return 0.10;
     }
     double paybleamount(double quantity){
-        return pricePerKg*quantity*0.1;
+        return pricePerKg*quantity*0.90;
     }
     public void displayDetails(){
         System.out.println("Season: "+season);
