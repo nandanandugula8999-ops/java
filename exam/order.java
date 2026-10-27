@@ -184,9 +184,33 @@ static void Placeorder(farmproduce[] items, int id, double quantity) {
         Placeorder(items, 701, 100); // More than available stock
         Displaycart();
        searchproducebyId(items, 999);
-searchbyName(items, "Unknown Produce");
+        searchbyName(items, "Unknown Produce");
+        System.out.println("\nProduce Details and Polymorphism");
 
+    for (farmproduce p : items) {
+        p.DisplayDetails();
+}
         Totalstock(items);
         Displayvalue(items);
+        System.out.println("Proude objefct copying");
+
+        farmproduce original = items[0];
+        farmproduce copy = new grain(
+            original.produceId(),
+            original.Name(),
+            original.pricePer(),
+            original.availableKg(),
+            original.fathername(),
+            "Rice",true
+        );
+        System.out.println("Original rice");
+        original.DisplayDetails();
+        System.out.println("Copied rice");
+        copy.DisplayDetails();
+        copy.setavailKg(150);
+        System.out.println("Modified values");
+        System.out.println("Original rice value: "+original.availableKg()+"Kg");
+        System.out.println("Copied rice value: "+copy.availableKg()+"Kg");
     }
+    
 }
