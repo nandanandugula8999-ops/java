@@ -16,4 +16,8 @@ public class fruit extends farmproduce {
     public double paybleAmount(double quantity){
         return pricePer() * quantity * 0.92;
     }
+    public void displayDetails(){
+        System.out.println("Fruit :"+fruitvariety);
+        System.out.println("Grade: "+grade);
+    }
 }
