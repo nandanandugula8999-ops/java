@@ -52,6 +52,6 @@ public class farmproduce implements sellable{
         return pricePerKg*availableKg;
     }
     public boolean issameProduce(farmproduce p){
-        return this.produceID == produceID;
+        return this.produceID == p.produceID;
     }
 }
