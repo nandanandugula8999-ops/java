@@ -16,7 +16,8 @@ public class grain extends farmproduce {
     double paybleamount(double quantity){
         return pricePer()*quantity*0.95;
     }
-    public void displayDetails(){
+    public void DisplayDetails(){
+        super.DisplayDetails();
         System.out.println("Grain-Type :"+grainType);
         System.out.println("Organic: "+organic);
     }

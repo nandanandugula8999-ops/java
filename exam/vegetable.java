@@ -16,7 +16,8 @@ public class vegetable extends farmproduce {
     double paybleamount(double quantity){
         return pricePer()*quantity*0.90;
     }
-    public void displayDetails(){
+    public void DisplayDetails(){
+        super.DisplayDetails();
         System.out.println("Season: "+season);
         System.out.println("Perishable: "+perishable);
     }

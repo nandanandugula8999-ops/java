@@ -17,7 +17,8 @@ public class spice extends farmproduce {
     double paybleAmount(double quantity){
         return pricePer()*quantity*0.88;
     }
-    public void displayDetails(){
+    public void DisplayDetails(){
+        super.DisplayDetails();
         System.out.println("SpiceType : "+spiceType);
         System.out.println("Origin: "+origin);
     }
