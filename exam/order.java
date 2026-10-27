@@ -17,11 +17,7 @@ public class order {
     
     for(cartEntry c:cart){
         if(c.produce.issameProduce(p)){
-            if(c.quantity + quantity >p.availableKg){
-                System.out.println("Insufficient quantity");
-                return ;
-            }
-        c.increaseProduce(quantity);
+            c.increaseProduce(quantity);
         System.out.println("quantity increased");
         return;
         }
@@ -66,7 +62,7 @@ public class order {
     static void Placeorder(farmproduce[] items,int id,double quantity){
         for(farmproduce p :items){
             if(p.produceId()==id){
-                if(quantity<=0){
+            if(quantity<=0){
                     System.out.println("Invalid quantity");
                 }
                 else if(quantity>=p.availableKg()){
@@ -139,12 +135,13 @@ public class order {
     }
     public static void main(String[] args){
         farmproduce [] items= {
-            new fruit(701,"Organic rice",60,100,"Ramesh","alphonso",'A'),
-            new spice(702,"Fresh tomatoes",40,80,"Me daddy","karam","hyd"),
-            new grain(703,"Alphonso Mangoes",120,50,"Anand","classic",true),
-            new vegetable(704, "Turmeric powder", 200, 30, "pablo","summer",false)
-        };
-        AddtoCart(items[0], 10);
+            new grain(701,"Organic rice",60,100,"Ramesh","Rice",true),
+            new vegetable(702,"Fresh tomatoes",40,80,"Me daddy","Summer",false),
+            new fruit(703,"Alphonso Mangoes",120,50,"Anand","Alphonso",'A'),
+            new spice(704, "Turmeric powder", 200, 30, "pablo","Turmeric","Hyd")
+        };  
+    /*
+         AddtoCart(items[0], 10);
         AddtoCart(items[0], 5);
         Displayinventory(items);
         Displayvalue(items);
@@ -154,6 +151,17 @@ public class order {
         Displaycart();
         Placeorder(items, 101, 6);
         System.out.println("Payable amount: ₹"+ items[0].payableamount(15));
-        Payableamounts(items);
+        Payableamounts(items);*/
+        
+        Placeorder(items, 701, 10);
+        Placeorder(items, 702, 5);
+        Placeorder(items, 703, 3);
+        Placeorder(items, 704, 2);
+        Placeorder(items, 701, 5);
+
+        Displaycart();
+        for(farmproduce p:items){
+            p.DisplayDetails();
+        }
     }
 }
