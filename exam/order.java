@@ -54,6 +54,15 @@ public class order {
         System.out.println("Total Discount: "+totalDiscount);
         System.out.println("Total Amount to be paid: "+totalbill);
     }
+    static void Payableamounts(farmproduce[] items){
+        double quantity=15;
+        for(farmproduce p: items){
+        System.out.println("Produce: "+p.Name());
+        System.out.println("Quantity: "+quantity+"kg");
+        System.out.println("Payable amount: "+p.payableamount(quantity));
+        System.out.println("_------------------");
+        }
+    }
     static void Placeorder(farmproduce[] items,int id,double quantity){
         for(farmproduce p :items){
             if(p.produceId()==id){
@@ -145,5 +154,6 @@ public class order {
         Displaycart();
         Placeorder(items, 101, 6);
         System.out.println("Payable amount: ₹"+ items[0].payableamount(15));
+        Payableamounts(items);
     }
 }
